@@ -80,6 +80,12 @@ write a task → watch your team take it from Drafting to a reviewed, mergeable 
 - **Agents use your subscription.** Task/plan/review runs are one task at a time
   (concurrency 1) and count against your Claude plan's usage limits, exactly as if you
   ran `claude` yourself. Rate-limit messages surface in the task timeline.
+- **Claude keeps logging you out?** Parallel claude processes share one credentials
+  file, and its refresh token is single-use — concurrent runs can race a refresh and
+  invalidate your login. The fix: run `claude setup-token` (prints a long-lived token),
+  add `CLAUDE_CODE_OAUTH_TOKEN=<token>` to `~/.orkka/stack.env`, and Orkka authenticates
+  every agent with it from the next run on (no restart needed). `orkka-local doctor claude`
+  shows which auth mode is in effect.
 - **Terms of service:** Orkka Local drives the `claude` CLI in headless mode under your
   personal login. Review Anthropic's current commercial terms and make your own call —
   this project doesn't extract or proxy your credentials (the runner never reads them;
