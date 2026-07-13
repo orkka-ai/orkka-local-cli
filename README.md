@@ -25,7 +25,15 @@ host, the same model as a self-hosted CI runner. It cannot live in a container.
 
 Prerequisites: **Docker** (running) and **at least one AI provider ready** — Claude
 (`claude /login`, Pro/Max subscription; use the native installer, not npm), Codex
-(`codex login`, ChatGPT subscription), Gemini (run `gemini` and sign in), GitHub
+(`codex login`, ChatGPT subscription), Gemini (API key — Google shut down the CLI's
+free personal Google-account sign-in in June 2026: create a free key at
+[aistudio.google.com/apikey](https://aistudio.google.com/apikey) and save it on the
+Orkka Local **Settings page** once the stack is up — every agent run and Muse's image
+generation receive it automatically. File-based alternatives on the runner machine:
+`GEMINI_API_KEY=<your key>` in `~/.gemini/.env` plus
+`"selectedAuthType": "gemini-api-key"` in `~/.gemini/settings.json` — Orkka mirrors
+`~/.gemini/.env` into every task workspace, so one file covers local and
+cloud-cloned repos; `ORKKA_GEMINI_API_KEY` in `~/.orkka/stack.env` works too), GitHub
 Copilot (`copilot login`, paid Copilot plan — note every agent run consumes premium
 requests from your Copilot quota), or **Ollama** for a no-subscription setup: install
 [Ollama](https://ollama.com), pull a coding model (`ollama pull gpt-oss:20b`), and
@@ -68,7 +76,7 @@ write a task → watch your team take it from Drafting to a reviewed, mergeable 
 
 - **Everything binds to 127.0.0.1.** This stack is not meant to face a network. Ports:
   UI 6750, API 6752, Postgres 5433 (debugging convenience only — override with
-  `ORKKA_PG_PORT=<port>` in `~/.orkka/.env` if 5433 is taken).
+  `ORKKA_PG_PORT=<port>` in `~/.orkka/stack.env` if 5433 is taken).
 - **Agents use your subscription.** Task/plan/review runs are one task at a time
   (concurrency 1) and count against your Claude plan's usage limits, exactly as if you
   ran `claude` yourself. Rate-limit messages surface in the task timeline.
@@ -84,9 +92,10 @@ write a task → watch your team take it from Drafting to a reviewed, mergeable 
   as running `claude` in that folder yourself.
 - **Design assets and diagrams live in Docker volumes**, not loose files on your
   machine: Muse's images in the data volume, Archie's diagrams in the database. Muse
-  authors SVGs out of the box; to enable raster images/GIFs, add
-  `ORKKA_GEMINI_API_KEY=<your key>` to `~/.orkka/.env` and run `orkka-local start`
-  again.
+  authors SVGs out of the box; to enable raster images/GIFs, save a Gemini API key on
+  the Settings page (effective immediately, no restart) or add
+  `ORKKA_GEMINI_API_KEY=<your key>` to `~/.orkka/stack.env` and run `orkka-local start`
+  again (either way the same key also authenticates Gemini dev agents if you use them).
 - **Git LFS files appear as pointers** to agents (smudge is disabled so nothing can
   hang a headless checkout). Fine for code; binary-heavy workflows will notice.
 - **Dev-phase worktrees** live next to your repo in a `{repo}-worktrees` sibling folder
