@@ -42,12 +42,12 @@ it supplies the agent harness that drives your local models).
 
 **Windows (PowerShell):**
 ```powershell
-irm https://raw.githubusercontent.com/ruanpelissoli/orkka-local-cli/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/orkka-ai/orkka-local-cli/main/install.ps1 | iex
 ```
 
 **macOS / Linux:**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/ruanpelissoli/orkka-local-cli/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/orkka-ai/orkka-local-cli/main/install.sh | bash
 ```
 
 ## Run
@@ -119,12 +119,12 @@ touched).
 
 ## Support
 
-Something not working? [Open an issue](https://github.com/ruanpelissoli/orkka-local-cli/issues).
+Something not working? [Open an issue](https://github.com/orkka-ai/orkka-local-cli/issues).
 
 ## About this repository
 
 This repo hosts the Orkka Local **distribution**: the install scripts above and the
-release binaries under [Releases](https://github.com/ruanpelissoli/orkka-local-cli/releases),
+release binaries under [Releases](https://github.com/orkka-ai/orkka-local-cli/releases),
 published automatically by Orkka's CI. The container images live on GHCR
-(`ghcr.io/ruanpelissoli/orkka-local-host`, `ghcr.io/ruanpelissoli/orkka-local-ui`) and
+(`ghcr.io/orkka-ai/orkka-local-host`, `ghcr.io/orkka-ai/orkka-local-ui`) and
 are pulled automatically by `orkka-local start`.

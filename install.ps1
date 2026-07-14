@@ -1,12 +1,12 @@
 # Orkka Local installer (Windows) — downloads the latest orkka-local binary and puts
 # it on your PATH. Usage:
-#   irm https://raw.githubusercontent.com/ruanpelissoli/orkka-local-cli/main/install.ps1 | iex
+#   irm https://raw.githubusercontent.com/orkka-ai/orkka-local-cli/main/install.ps1 | iex
 # Then:
 #   orkka-local start
 
 $ErrorActionPreference = "Stop"
 
-$repo = "ruanpelissoli/orkka-local-cli"
+$repo = "orkka-ai/orkka-local-cli"
 $installDir = Join-Path $env:USERPROFILE ".orkka\bin"
 
 Write-Host "Resolving the latest Orkka Local release..."

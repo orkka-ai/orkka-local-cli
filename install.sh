@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 # Orkka Local installer (Linux/macOS) — downloads the latest orkka-local binary and puts
 # it on your PATH. Usage:
-#   curl -fsSL https://raw.githubusercontent.com/ruanpelissoli/orkka-local-cli/main/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/orkka-ai/orkka-local-cli/main/install.sh | bash
 # Then:
 #   orkka-local start
 
 set -euo pipefail
 
-repo="ruanpelissoli/orkka-local-cli"
+repo="orkka-ai/orkka-local-cli"
 install_dir="$HOME/.orkka/bin"
 
 case "$(uname -s)-$(uname -m)" in
