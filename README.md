@@ -62,12 +62,27 @@ open while you work. Other commands: `orkka-local stop`, `orkka-local status`.
 
 ## Update
 
+`orkka-local start` updates itself. It checks for a newer release, replaces the binary,
+restarts, and pulls the latest container images — so as long as you restart now and then,
+you are on the current version.
+
+To update without waiting for a restart:
+
 ```
 orkka-local update
 ```
 
-Updates the binary to the latest release and pulls the latest container images, then
-restart with `orkka-local start`. (Re-running the install one-liner works too.)
+Then restart with `orkka-local start`. (Re-running the install one-liner works too.)
+
+To pin a version — an offline machine, or a release you want to skip — start with
+`--no-update`, or set `ORKKA_NO_AUTO_UPDATE=1`:
+
+```
+orkka-local start --no-update
+```
+
+A runner left running across a release keeps working; the UI shows an
+"update available" note in the sidebar until you restart it.
 
 First steps in the UI: create a project → **Repos** → add your local repo folders →
 write a task → watch your team take it from Drafting to a reviewed, mergeable PR.
